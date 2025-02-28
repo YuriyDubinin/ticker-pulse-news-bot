@@ -13,7 +13,7 @@ RUN go mod tidy
 COPY . .
 
 # Сбор бинарника для Linux amd64
-RUN GOARCH=amd64 GOOS=linux go build -o /bin/ticker_pulse_bot ./cmd/main.go
+RUN GOARCH=amd64 GOOS=linux go build -o /bin/ticker_pulse_news_bot ./cmd/main.go
 
 # arm64
 # FROM alpine:latest
@@ -23,14 +23,14 @@ FROM --platform=linux/amd64 alpine:latest
 
 RUN apk --no-cache add ca-certificates libc6-compat
 
-COPY --from=builder /bin/ticker_pulse_bot /bin/ticker_pulse_bot
+COPY --from=builder /bin/ticker_pulse_news_bot /bin/ticker_pulse_news_bot
 
 COPY .env /bin/.env
 
-RUN chmod +x /bin/ticker_pulse_bot
+RUN chmod +x /bin/ticker_pulse_news_bot
 
 ENV ENV_FILE=/bin/.env
 
-RUN ls -l /bin/ticker_pulse_bot
+RUN ls -l /bin/ticker_pulse_news_bot
 
-CMD ["/bin/sh", "-c", "/bin/ticker_pulse_bot"]
+CMD ["/bin/sh", "-c", "/bin/ticker_pulse_news_bot"]
