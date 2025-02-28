@@ -35,7 +35,7 @@ func NewBot(maxWorkers int) (*Bot, error) {
 func (b *Bot) Start() {
 	log.Println("[TICKER-PULSE-NEWS-BOT]: Бот запущен")
 	b.workerPool.Start()
-	// b.tgBot.SendMessageToChannel("🌐 Новости меняются каждую секунду")
+	b.tgBot.SendMessageToChannel("🌐 Новости меняются каждую секунду")
 	b.UpdateNews()
 	b.PostNews()
 }
